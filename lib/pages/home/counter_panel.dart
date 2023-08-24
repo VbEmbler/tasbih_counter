@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasbih_counter/pages/home/save_button.dart';
+int tasbihCount = 0;
 
 class CounterPanel extends StatefulWidget {
   const CounterPanel({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class CounterPanel extends StatefulWidget {
 }
 
 class _CounterPanelState extends State<CounterPanel> {
-  int tasbihCount = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,11 +30,11 @@ class _CounterPanelState extends State<CounterPanel> {
                   color: const Color(0xFF778DFF),
                   child: InkWell(
                     onTap: () {
-                      setState(() {
                         if(tasbihCount > 0) {
-                          tasbihCount--;
+                          setState(() {
+                            tasbihCount--;
+                          });
                         }
-                      });
                     },
                     child: SizedBox(
                       width: 35,
@@ -89,11 +90,11 @@ class _CounterPanelState extends State<CounterPanel> {
                   color: const Color(0xFF778DFF),
                   child: InkWell(
                     onTap: () {
-                      setState(() {
                         if(tasbihCount > 0) {
-                          tasbihCount = 0;
+                          setState(() {
+                            tasbihCount = 0;
+                          });
                         }
-                      });
                     },
                     child: SizedBox(
                       width: 35,
