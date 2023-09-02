@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TogglePanel extends StatelessWidget {
-  const TogglePanel({
-    super.key,
-  });
+  final bool isActivity;
+  final Function toggleActivity;
+  const TogglePanel(
+      this.isActivity,
+      this.toggleActivity,
+      {super.key}
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -21,35 +25,51 @@ class TogglePanel extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Container(
-                    height: 30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xFF4664FF),
-                    ),
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(4),
-                    child: const Text(
-                      'Activity',
-                      style: TextStyle(
-                        color: Colors.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      if (!isActivity) toggleActivity();
+                    },
+                    child: Container(
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color:
+                        isActivity ? const Color(0xFF4664FF) : Colors.white,
+                      ),
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.all(4),
+                      child: Text(
+                        'Activity',
+                        style: TextStyle(
+                          color: isActivity
+                              ? Colors.white
+                              : const Color(0xFF9E9E9E),
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    height: 30,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.white,
-                    ),
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.all(4),
-                    child: const Text(
-                      'Saved',
-                      style: TextStyle(
-                        color: Color(0xFF9E9E9E),
+                  child: GestureDetector(
+                    onTap: () {
+                      if (isActivity) toggleActivity();
+                    },
+                    child: Container(
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color:
+                        isActivity ? Colors.white : const Color(0xFF4664FF),
+                      ),
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.all(4),
+                      child: Text(
+                        'Saved',
+                        style: TextStyle(
+                          color: isActivity
+                              ? const Color(0xFF9E9E9E)
+                              : Colors.white,
+                        ),
                       ),
                     ),
                   ),
