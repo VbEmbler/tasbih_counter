@@ -3,8 +3,21 @@ import 'package:tasbih_counter/pages/home/counter_panel.dart';
 import 'package:tasbih_counter/pages/home/saved_tasbih_panel.dart';
 import 'package:tasbih_counter/pages/home/toggle_panel.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool isActivity = true;
+
+  void toggleActivity() {
+    setState(() {
+      isActivity = !isActivity;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +29,17 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 15, top: 36, right: 15),
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(bottom: 20.0),
-                child: TogglePanel(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: TogglePanel(isActivity, toggleActivity),
               ),
-              CounterPanel(),
-              const Padding(padding: EdgeInsets.only(bottom: 14.0)),
+              Visibility(
+                visible: isActivity,
+                child: const Padding(
+                  padding: EdgeInsets.only(bottom: 14.0),
+                  child: CounterPanel(),
+                ),
+              ),
               const SavedTasbihPanel(),
             ],
           ),

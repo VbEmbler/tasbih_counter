@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tasbih_counter/voids/show_alert_dhikr.dart';
 
 class SavedTasbihRow extends StatelessWidget {
   final int index;
   const SavedTasbihRow(
-      this.index, {
-        super.key,
-      });
+    this.index, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,11 @@ class SavedTasbihRow extends StatelessWidget {
             child: Material(
               color: const Color(0xFFF9F9F9),
               child: InkWell(
-                onTap: () {},
+                onTap: () => showAlertDhikr(
+                  context: context,
+                  isEdit: true,
+                  title: 'Name of the file dhikr',
+                ),
                 child: SizedBox(
                   width: 35,
                   height: 35,

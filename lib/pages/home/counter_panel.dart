@@ -3,7 +3,7 @@ import 'package:tasbih_counter/pages/home/save_button.dart';
 
 
 class CounterPanel extends StatefulWidget {
-  CounterPanel({Key? key}) : super(key: key);
+  const CounterPanel({Key? key}) : super(key: key);
 
   @override
   State<CounterPanel> createState() => _CounterPanelState();
@@ -71,7 +71,6 @@ class _CounterPanelState extends State<CounterPanel> {
                       width: 154,
                       height: 154,
                       child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 42),
