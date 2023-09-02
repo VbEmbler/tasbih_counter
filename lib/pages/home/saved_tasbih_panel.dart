@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tasbih_counter/pages/home/saved_tasbih_row.dart';
 
-class SavedTasbihPanelPortrait extends StatelessWidget {
-  const SavedTasbihPanelPortrait({Key? key}) : super(key: key);
+class SavedTasbihPanel extends StatelessWidget {
+  const SavedTasbihPanel({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

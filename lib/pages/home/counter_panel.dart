@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:tasbih_counter/pages/home/save_button.dart';
-int tasbihCount = 0;
+
 
 class CounterPanel extends StatefulWidget {
-  const CounterPanel({Key? key}) : super(key: key);
+  CounterPanel({Key? key}) : super(key: key);
 
   @override
   State<CounterPanel> createState() => _CounterPanelState();
 }
 
 class _CounterPanelState extends State<CounterPanel> {
+  int tasbihCount = 0;
+
+  void zeroing() {
+    if(tasbihCount > 0) {
+      setState(() {
+        tasbihCount = 0;
+      });
+    }
+  }
+
+  void increment() {
+    setState(() {
+      tasbihCount++;
+    });
+  }
+
+  void decrement() {
+    if(tasbihCount > 0) {
+      setState(() {
+        tasbihCount--;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +52,7 @@ class _CounterPanelState extends State<CounterPanel> {
                 child: Material(
                   color: const Color(0xFF778DFF),
                   child: InkWell(
-                    onTap: () {
-                        if(tasbihCount > 0) {
-                          setState(() {
-                            tasbihCount--;
-                          });
-                        }
-                    },
+                    onTap: () => decrement(),
                     child: SizedBox(
                       width: 35,
                       height: 35,
@@ -49,11 +66,7 @@ class _CounterPanelState extends State<CounterPanel> {
                 child: Material(
                   color: const Color(0xFF4664FF),
                   child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        tasbihCount++;
-                      });
-                    },
+                    onTap: () => increment(),
                     child: SizedBox(
                       width: 154,
                       height: 154,
@@ -89,13 +102,7 @@ class _CounterPanelState extends State<CounterPanel> {
                 child: Material(
                   color: const Color(0xFF778DFF),
                   child: InkWell(
-                    onTap: () {
-                        if(tasbihCount > 0) {
-                          setState(() {
-                            tasbihCount = 0;
-                          });
-                        }
-                    },
+                    onTap: () => zeroing(),
                     child: SizedBox(
                       width: 35,
                       height: 35,
