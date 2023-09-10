@@ -83,7 +83,12 @@ class TogglePanel extends StatelessWidget {
           child: Material(
             color: Colors.white,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                //MaterialPageRoute settingsPageRoute = MaterialPageRoute(builder: (BuildContext context) => const SettingsPage());
+                //Navigator.push(context, settingsPageRoute);
+
+                Navigator.pushNamed(context, '/settingsPage');
+              },
               child: SizedBox(
                 width: 54,
                 height: 38,

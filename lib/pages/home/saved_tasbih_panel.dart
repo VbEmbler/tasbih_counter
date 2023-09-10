@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:tasbih_counter/models/dhikr.dart';
 import 'package:tasbih_counter/pages/home/saved_tasbih_row.dart';
 
 class SavedTasbihPanel extends StatelessWidget {
-  const SavedTasbihPanel({Key? key}) : super(key: key);
+  final Function mySetState;
+  final int counter;
+  final Function increment;
+  final Function decrement;
+  final Function zeroing;
+  const SavedTasbihPanel({
+    Key? key,
+    required this.counter,
+    required this.increment,
+    required this.decrement,
+    required this.zeroing,
+    required this.mySetState,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +46,7 @@ class SavedTasbihPanel extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: 20,
+                  itemCount: fakeDB.length,
                   itemBuilder: (context, index) {
                     return Container(
                       decoration: BoxDecoration(
@@ -42,7 +55,10 @@ class SavedTasbihPanel extends StatelessWidget {
                       ),
                       height: 50,
                       margin: const EdgeInsets.only(bottom: 10),
-                      child: SavedTasbihRow(index),
+                      child: SavedTasbihRow(
+                        mySetState: mySetState,
+                        index,
+                      ),
                     );
                   }),
             ),
@@ -52,4 +68,3 @@ class SavedTasbihPanel extends StatelessWidget {
     );
   }
 }
-

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:tasbih_counter/models/dhikr.dart';
 import 'package:tasbih_counter/voids/show_alert_dhikr.dart';
 
 class SavedTasbihRow extends StatelessWidget {
+  final Function mySetState;
   final int index;
   const SavedTasbihRow(
     this.index, {
     super.key,
+    required this.mySetState,
   });
 
   @override
@@ -20,7 +24,7 @@ class SavedTasbihRow extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: Text(
-                '$index',
+                fakeDB[index].counter.toString(),
                 style: const TextStyle(
                   fontFamily: 'REM-Bold',
                   color: Color(0xFF4664FF),
@@ -35,21 +39,21 @@ class SavedTasbihRow extends StatelessWidget {
           height: 30,
           color: Colors.white,
         ),
-        const Expanded(
+        Expanded(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              'Name of the file dhikr',
-              style: TextStyle(
+              fakeDB[index].title,
+              style: const TextStyle(
                 fontSize: 12,
                 color: Colors.black,
               ),
             ),
           ),
         ),
-        const Text(
-          '18.08.2023',
-          style: TextStyle(
+        Text(
+          DateFormat('dd.MM.yyyy').format(fakeDB[index].date),
+          style: const TextStyle(
             fontSize: 10,
             color: Color(0xFF9F9F9F),
           ),
@@ -61,11 +65,16 @@ class SavedTasbihRow extends StatelessWidget {
             child: Material(
               color: const Color(0xFFF9F9F9),
               child: InkWell(
-                onTap: () => showAlertDhikr(
-                  context: context,
-                  isEdit: true,
-                  title: 'Name of the file dhikr',
-                ),
+                onTap: () {
+                  showAlertDhikr(
+                    counter: fakeDB[index].counter,
+                    context: context,
+                    isEdit: true,
+                    title: fakeDB[index].title,
+                    mySetState: mySetState,
+                    index: index,
+                  );
+                },
                 child: SizedBox(
                   width: 35,
                   height: 35,

@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tasbih_counter/models/dhikr.dart';
 
 void showAlertDhikr({
+  required mySetState,
+  required int counter,
   required BuildContext context,
   required bool isEdit,
+  int? index,
   String? title,
 }) {
+  final TextEditingController controller = TextEditingController();
   showDialog(
     context: context,
     builder: (context) {
@@ -21,9 +26,9 @@ void showAlertDhikr({
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              'Количество Зикров: 3',
-              style: TextStyle(
+            Text(
+              'Количество Зикров: $counter',
+              style: const TextStyle(
                 fontSize: 15,
               ),
             ),
@@ -31,6 +36,7 @@ void showAlertDhikr({
               height: 10,
             ),
             CupertinoTextField(
+              controller: controller,
               placeholder: title ?? 'Введите название',
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
@@ -45,6 +51,8 @@ void showAlertDhikr({
             visible: isEdit,
             child: IconButton(
               onPressed: () {
+                if (index != null) fakeDB.removeAt(index);
+                mySetState();
                 Navigator.pop(context);
               },
               icon: const Icon(
@@ -68,7 +76,27 @@ void showAlertDhikr({
                 const Color(0xFF4664FF),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              if (!isEdit) {
+                fakeDB.add(
+                  Dhikr(
+                    counter: counter,
+                    title: controller.text,
+                    date: DateTime.now(),
+                  ),
+                );
+              } else {
+                if (index != null) {
+                  fakeDB[index] = Dhikr(
+                    counter: counter,
+                    title: controller.text,
+                    date: DateTime.now(),
+                  );
+                }
+              }
+              mySetState();
+              Navigator.pop(context);
+            },
             child: const Text('Сохранить'),
           )
         ],

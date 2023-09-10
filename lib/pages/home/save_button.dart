@@ -1,9 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tasbih_counter/voids/show_alert_dhikr.dart';
 
 class SaveButton extends StatelessWidget {
-  const SaveButton({Key? key}) : super(key: key);
+  final Function mySetState;
+  final int counter;
+  const SaveButton({
+    Key? key,
+    required this.counter,
+    required this.mySetState,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +17,12 @@ class SaveButton extends StatelessWidget {
       child: Material(
         color: Colors.white,
         child: InkWell(
-          onTap: () => showAlertDhikr(context: context, isEdit: false),
+          onTap: () => showAlertDhikr(
+            counter: counter,
+            context: context,
+            isEdit: false,
+            mySetState: mySetState,
+          ),
           child: const SizedBox(
             height: 45,
             width: double.infinity,

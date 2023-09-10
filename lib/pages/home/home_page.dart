@@ -19,6 +19,34 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  int tasbihCount = 0;
+
+  void zeroing() {
+    if (tasbihCount > 0) {
+      setState(() {
+        tasbihCount = 0;
+      });
+    }
+  }
+
+  void increment() {
+    setState(() {
+      tasbihCount++;
+    });
+  }
+
+  void decrement() {
+    if (tasbihCount > 0) {
+      setState(() {
+        tasbihCount--;
+      });
+    }
+  }
+
+  void mySetState() {
+      setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,12 +63,24 @@ class _HomePageState extends State<HomePage> {
               ),
               Visibility(
                 visible: isActivity,
-                child: const Padding(
-                  padding: EdgeInsets.only(bottom: 14.0),
-                  child: CounterPanel(),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 14.0),
+                  child: CounterPanel(
+                    counter: tasbihCount,
+                    increment: increment,
+                    decrement: decrement,
+                    zeroing: zeroing,
+                    mySetState: mySetState,
+                  ),
                 ),
               ),
-              const SavedTasbihPanel(),
+              SavedTasbihPanel(
+                counter: tasbihCount,
+                increment: increment,
+                decrement: decrement,
+                zeroing: zeroing,
+                mySetState: mySetState,
+              ),
             ],
           ),
         ),

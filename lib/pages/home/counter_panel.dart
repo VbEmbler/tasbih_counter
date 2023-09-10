@@ -1,38 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:tasbih_counter/pages/home/save_button.dart';
 
-
-class CounterPanel extends StatefulWidget {
-  const CounterPanel({Key? key}) : super(key: key);
-
-  @override
-  State<CounterPanel> createState() => _CounterPanelState();
-}
-
-class _CounterPanelState extends State<CounterPanel> {
-  int tasbihCount = 0;
-
-  void zeroing() {
-    if(tasbihCount > 0) {
-      setState(() {
-        tasbihCount = 0;
-      });
-    }
-  }
-
-  void increment() {
-    setState(() {
-      tasbihCount++;
-    });
-  }
-
-  void decrement() {
-    if(tasbihCount > 0) {
-      setState(() {
-        tasbihCount--;
-      });
-    }
-  }
+class CounterPanel extends StatelessWidget {
+  final int counter;
+  final Function increment;
+  final Function decrement;
+  final Function zeroing;
+  final Function mySetState;
+  const CounterPanel({
+    Key? key,
+    required this.counter,
+    required this.increment,
+    required this.decrement,
+    required this.zeroing,
+    required this.mySetState,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +57,7 @@ class _CounterPanelState extends State<CounterPanel> {
                           Padding(
                             padding: const EdgeInsets.only(top: 42),
                             child: Text(
-                              tasbihCount.toString(),
+                              counter.toString(),
                               style: const TextStyle(
                                 fontFamily: 'REM-Bold',
                                 color: Colors.white,
@@ -114,7 +96,7 @@ class _CounterPanelState extends State<CounterPanel> {
           ),
         ),
         const SizedBox(height: 14),
-        const SaveButton(),
+        SaveButton(counter: counter, mySetState: mySetState,),
       ],
     );
   }
