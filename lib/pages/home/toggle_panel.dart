@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TogglePanel extends StatelessWidget {
   final bool isActivity;
   final Function toggleActivity;
-  const TogglePanel(
-      this.isActivity,
-      this.toggleActivity,
-      {super.key}
-      );
+  const TogglePanel(this.isActivity, this.toggleActivity, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +31,7 @@ class TogglePanel extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color:
-                        isActivity ? const Color(0xFF4664FF) : Colors.white,
+                            isActivity ? const Color(0xFF4664FF) : Colors.white,
                       ),
                       alignment: Alignment.center,
                       margin: const EdgeInsets.all(4),
@@ -59,7 +56,7 @@ class TogglePanel extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color:
-                        isActivity ? Colors.white : const Color(0xFF4664FF),
+                            isActivity ? Colors.white : const Color(0xFF4664FF),
                       ),
                       alignment: Alignment.center,
                       margin: const EdgeInsets.all(4),
@@ -87,7 +84,8 @@ class TogglePanel extends StatelessWidget {
                 //MaterialPageRoute settingsPageRoute = MaterialPageRoute(builder: (BuildContext context) => const SettingsPage());
                 //Navigator.push(context, settingsPageRoute);
 
-                Navigator.pushNamed(context, '/settingsPage');
+                //Navigator.pushNamed(context, '/settingsPage');
+                context.go('/settingsPage');
               },
               child: SizedBox(
                 width: 54,

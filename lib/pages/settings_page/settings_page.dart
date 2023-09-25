@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -16,18 +17,18 @@ class SettingsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => context.pop(),//Navigator.pop(context),
               child: const Text('Back'),
             ),
             TextButton(
-              child: const Text('Перейти на CustomPage'),
-              onPressed: () {
-                /*MaterialPageRoute customPageRoute = MaterialPageRoute(builder: (BuildContext context) => const CustomPage());
+                child: const Text('Перейти на CustomPage'),
+                onPressed: () {
+                  /*MaterialPageRoute customPageRoute = MaterialPageRoute(builder: (BuildContext context) => const CustomPage());
                 Navigator.push(context, customPageRoute);*/
 
-                Navigator.pushNamed(context, '/customPage');
-              }
-            ),
+                  //Navigator.pushNamed(context, '/customPage');
+                  context.go('/settingsPage/customPage');
+                }),
           ],
         ),
       ),

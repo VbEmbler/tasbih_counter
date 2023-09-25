@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomPage extends StatelessWidget {
   const CustomPage({Key? key}) : super(key: key);
@@ -17,10 +18,10 @@ class CustomPage extends StatelessWidget {
             'Вернуться на главную',
           ),
           onPressed: () {
-
             //Navigator.popUntil(context, (route) => route.isFirst);
             //Navigator.popAndPushNamed(context, '/');
-           Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+            //Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+            context.go('/');
           },
         ),
       ),
