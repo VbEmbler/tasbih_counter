@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tasbih_counter/pages/home/save_button.dart';
 
@@ -65,8 +66,8 @@ class CounterPanel extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const Text(
-                            'Dhikr',
+                          Text(
+                            'Dhikr'.tr(),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 12,

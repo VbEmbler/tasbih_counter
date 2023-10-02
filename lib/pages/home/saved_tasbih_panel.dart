@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tasbih_counter/models/dhikr.dart';
 import 'package:tasbih_counter/pages/home/saved_tasbih_row.dart';
@@ -30,9 +31,9 @@ class SavedTasbihPanel extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Last saved dhikrs',
-              style: TextStyle(
+            Text(
+              'Last saved dhikrs'.tr(),
+              style: const TextStyle(
                 fontFamily: 'REM-Bold',
                 color: Color(0xFF232323),
                 fontSize: 14,
@@ -48,6 +49,7 @@ class SavedTasbihPanel extends StatelessWidget {
               child: ListView.builder(
                   itemCount: fakeDB.length,
                   itemBuilder: (context, index) {
+                    int newIndex = fakeDB.length - 1 - index;
                     return Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -57,7 +59,7 @@ class SavedTasbihPanel extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 10),
                       child: SavedTasbihRow(
                         mySetState: mySetState,
-                        index,
+                        newIndex,
                       ),
                     );
                   }),

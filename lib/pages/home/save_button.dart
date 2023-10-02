@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:tasbih_counter/voids/show_alert_dhikr.dart';
 
@@ -23,13 +24,13 @@ class SaveButton extends StatelessWidget {
             isEdit: false,
             mySetState: mySetState,
           ),
-          child: const SizedBox(
+          child: SizedBox(
             height: 45,
             width: double.infinity,
             child: Center(
               child: Text(
-                'Save dhikr',
-                style: TextStyle(
+                'Save dhikr'.tr(),
+                style: const TextStyle(
                   color: Color(0xFF4664FF),
                   fontSize: 14,
                   fontWeight: FontWeight.bold,

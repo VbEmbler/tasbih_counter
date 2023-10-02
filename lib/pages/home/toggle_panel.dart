@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -36,7 +37,7 @@ class TogglePanel extends StatelessWidget {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.all(4),
                       child: Text(
-                        'Activity',
+                        'Activity'.tr(),
                         style: TextStyle(
                           color: isActivity
                               ? Colors.white
@@ -61,7 +62,7 @@ class TogglePanel extends StatelessWidget {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.all(4),
                       child: Text(
-                        'Saved',
+                        'Saved'.tr(),
                         style: TextStyle(
                           color: isActivity
                               ? const Color(0xFF9E9E9E)
