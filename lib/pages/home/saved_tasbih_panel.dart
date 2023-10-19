@@ -4,18 +4,9 @@ import 'package:tasbih_counter/models/dhikr.dart';
 import 'package:tasbih_counter/pages/home/saved_tasbih_row.dart';
 
 class SavedTasbihPanel extends StatelessWidget {
-  final Function mySetState;
-  final int counter;
-  final Function increment;
-  final Function decrement;
-  final Function zeroing;
+
   const SavedTasbihPanel({
     Key? key,
-    required this.counter,
-    required this.increment,
-    required this.decrement,
-    required this.zeroing,
-    required this.mySetState,
   }) : super(key: key);
 
   @override
@@ -58,7 +49,6 @@ class SavedTasbihPanel extends StatelessWidget {
                       height: 50,
                       margin: const EdgeInsets.only(bottom: 10),
                       child: SavedTasbihRow(
-                        mySetState: mySetState,
                         newIndex,
                       ),
                     );

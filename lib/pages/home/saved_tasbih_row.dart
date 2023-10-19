@@ -4,12 +4,12 @@ import 'package:tasbih_counter/models/dhikr.dart';
 import 'package:tasbih_counter/voids/show_alert_dhikr.dart';
 
 class SavedTasbihRow extends StatelessWidget {
-  final Function mySetState;
+
   final int index;
   const SavedTasbihRow(
     this.index, {
     super.key,
-    required this.mySetState,
+
   });
 
   @override
@@ -71,7 +71,6 @@ class SavedTasbihRow extends StatelessWidget {
                     context: context,
                     isEdit: true,
                     title: fakeDB[index].title,
-                    mySetState: mySetState,
                     index: index,
                   );
                 },

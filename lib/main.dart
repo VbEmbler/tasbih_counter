@@ -2,10 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:tasbih_counter/pages/custom_page/custom_page.dart';
 import 'package:tasbih_counter/pages/home/home_page.dart';
 import 'package:flutter/services.dart';
 import 'package:tasbih_counter/pages/settings_page/settings_page.dart';
+import 'package:tasbih_counter/providers/counter_provider.dart';
+import 'package:tasbih_counter/providers/toggle_panel_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,17 +16,24 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   await EasyLocalization.ensureInitialized();
+  
   runApp(
-    EasyLocalization(
-      supportedLocales: const [
-        Locale('en'),
-        Locale('ru'),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CounterProvider()),
+        ChangeNotifierProvider(create: (context) => TogglePanelProvider()),
       ],
-      assetLoader: CsvAssetLoader(),
-      fallbackLocale: const Locale('en'),
-      path: 'assets/langs/langs.csv',
-      // ignore: prefer_const_constructors
-      child: TasbihCounter(),
+      child: EasyLocalization(
+        supportedLocales: const [
+          Locale('en'),
+          Locale('ru'),
+        ],
+        assetLoader: CsvAssetLoader(),
+        fallbackLocale: const Locale('en'),
+        path: 'assets/langs/langs.csv',
+        // ignore: prefer_const_constructors
+        child: TasbihCounter(),
+      ),
     ),
   );
 }

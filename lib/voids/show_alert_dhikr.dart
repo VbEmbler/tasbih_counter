@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:tasbih_counter/models/dhikr.dart';
 
 void showAlertDhikr({
-  required mySetState,
   required int counter,
   required BuildContext context,
   required bool isEdit,
@@ -54,7 +53,6 @@ void showAlertDhikr({
             child: IconButton(
               onPressed: () {
                 if (index != null) fakeDB.removeAt(index);
-                mySetState();
                 Navigator.pop(context);
               },
               icon: const Icon(
@@ -97,7 +95,6 @@ void showAlertDhikr({
                   );
                 }
               }
-              mySetState();
               Navigator.pop(context);
             },
             child: Text('Save'.tr()),
