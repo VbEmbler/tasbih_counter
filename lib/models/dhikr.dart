@@ -1,3 +1,5 @@
+import 'package:hive_flutter/hive_flutter.dart';
+
 class Dhikr {
   int counter;
   String title;
@@ -8,10 +10,27 @@ class Dhikr {
     required this.title,
     required this.date,
   });
-
-  void save() { }
-
-  void delete() {}
 }
 
-List<Dhikr> fakeDB = [];
+class DhikrAdapter extends TypeAdapter<Dhikr> {
+  @override
+  final typeId = 0;
+
+  @override
+  Dhikr read(BinaryReader reader) {
+    return Dhikr(
+      counter: reader.readInt(),
+      title: reader.readString(),
+      date: DateTime.fromMillisecondsSinceEpoch(reader.readInt()),
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, Dhikr obj) {
+    writer.writeInt(obj.counter);
+    writer.writeString(obj.title);
+    writer.writeInt(obj.date.millisecondsSinceEpoch);
+  }
+}
+
+//List<Dhikr> fakeDB = [];

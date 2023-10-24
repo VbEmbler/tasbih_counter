@@ -1,17 +1,23 @@
+// ignore_for_file: curly_braces_in_flow_control_structures, prefer_const_constructors
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:tasbih_counter/models/dhikr.dart';
+import 'package:tasbih_counter/providers/hive_provider.dart';
+
 
 void showAlertDhikr({
   required int counter,
   required BuildContext context,
   required bool isEdit,
-  int? index,
+  required int? index,
   String? title,
 }) {
   final TextEditingController controller = TextEditingController();
+  final dhikrsBoxProvider = context.read<HiveProvider>();
   showDialog(
     context: context,
     builder: (context) {
@@ -20,9 +26,7 @@ void showAlertDhikr({
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        title: isEdit
-            ? Text('Edit Dhikr'.tr())
-            : Text('Save Dhikr'.tr()),
+        title: isEdit ? Text('Edit Dhikr'.tr()) : Text('Save Dhikr'.tr()),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -52,7 +56,9 @@ void showAlertDhikr({
             visible: isEdit,
             child: IconButton(
               onPressed: () {
-                if (index != null) fakeDB.removeAt(index);
+                if (index != null)
+                  dhikrsBoxProvider
+                      .deleteDhikr(index); //fakeDB.removeAt(index);
                 Navigator.pop(context);
               },
               icon: const Icon(
@@ -67,7 +73,6 @@ void showAlertDhikr({
             },
             child: Text(
               'Cancel'.tr(),
-              // ignore: prefer_const_constructors
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -79,20 +84,32 @@ void showAlertDhikr({
             ),
             onPressed: () {
               if (!isEdit) {
-                fakeDB.add(
+                dhikrsBoxProvider.saveDhikr(Dhikr(
+                  counter: counter,
+                  title: controller.text,
+                  date: DateTime.now(),
+                ));
+                /*fakeDB.add(
                   Dhikr(
                     counter: counter,
                     title: controller.text,
                     date: DateTime.now(),
                   ),
-                );
+                );*/
               } else {
                 if (index != null) {
-                  fakeDB[index] = Dhikr(
+                  dhikrsBoxProvider.editDhikr(
+                      index,
+                      Dhikr(
+                        counter: dhikrsBoxProvider.dhikrs.getAt(index)!.counter,
+                        title: controller.text,
+                        date: dhikrsBoxProvider.dhikrs.getAt(index)?.date ?? DateTime.now(),
+                      ));
+                  /*fakeDB[index] = Dhikr(
                     counter: counter,
                     title: controller.text,
                     date: DateTime.now(),
-                  );
+                  );*/
                 }
               }
               Navigator.pop(context);
@@ -104,7 +121,6 @@ void showAlertDhikr({
     },
   );
 }
-
 
 const Map<String, String> myLangs = {
   'en': 'English',

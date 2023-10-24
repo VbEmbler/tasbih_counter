@@ -19,6 +19,7 @@ class SaveButton extends StatelessWidget {
         color: Colors.white,
         child: InkWell(
           onTap: () => showAlertDhikr(
+            index: null,
             context: context,
             isEdit: false, counter: context.read<CounterProvider>().tasbihCount,
           ),

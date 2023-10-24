@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tasbih_counter/models/dhikr.dart';
 import 'package:tasbih_counter/voids/show_alert_dhikr.dart';
 
 class SavedTasbihRow extends StatelessWidget {
-
   final int index;
-  const SavedTasbihRow(
-    this.index, {
+  final int counter;
+  final String title;
+  final DateTime date;
+  const SavedTasbihRow({
     super.key,
-
+    required this.index,
+    required this.counter, required this.title, required this.date,
   });
 
   @override
@@ -24,7 +25,7 @@ class SavedTasbihRow extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: Text(
-                fakeDB[index].counter.toString(),
+                counter.toString(),
                 style: const TextStyle(
                   fontFamily: 'REM-Bold',
                   color: Color(0xFF4664FF),
@@ -43,7 +44,7 @@ class SavedTasbihRow extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
-              fakeDB[index].title,
+              title,
               style: const TextStyle(
                 fontSize: 12,
                 color: Colors.black,
@@ -52,7 +53,7 @@ class SavedTasbihRow extends StatelessWidget {
           ),
         ),
         Text(
-          DateFormat('dd.MM.yyyy').format(fakeDB[index].date),
+          DateFormat('dd.MM.yyyy').format(date),
           style: const TextStyle(
             fontSize: 10,
             color: Color(0xFF9F9F9F),
@@ -67,10 +68,10 @@ class SavedTasbihRow extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   showAlertDhikr(
-                    counter: fakeDB[index].counter,
+                    counter: counter,
                     context: context,
                     isEdit: true,
-                    title: fakeDB[index].title,
+                    title: title,
                     index: index,
                   );
                 },
