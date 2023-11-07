@@ -30,6 +30,18 @@ class SettingsPage extends StatelessWidget {
                 },
               ),
             ),
+                        ListTile(
+              title: TextButton(
+                child: const Text('Перейти на ToDo Page'),
+                onPressed: () {
+                  /*MaterialPageRoute customPageRoute = MaterialPageRoute(builder: (BuildContext context) => const CustomPage());
+                  Navigator.push(context, customPageRoute);*/
+
+                  //Navigator.pushNamed(context, '/customPage');
+                  context.go('/settingsPage/todoPage');
+                },
+              ),
+            ),
             ListTile(
               tileColor: Colors.black12,
               leading: const Icon(Icons.language),
